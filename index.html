@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LKPD Digital Interaktif - Ayo Mengenal Sifat Wajib Allah</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+:root{--sage-primary:#2d5a27;--sage-light:#e8f0e6;--sage-medium:#87a96b;--cream:#fbf9f1;--cream-dark:#f0ebe1;--navy:#1b263b;--gold:#d4af37;--gold-light:#fdf6d8;--white:#fff;--gray-text:#4a5568;--error-red:#c53030;--success-green:#2f855a;--radius-lg:16px;--radius-md:12px;--radius-sm:8px;--shadow:0 10px 25px -5px rgba(45,90,39,.08),0 8px 10px -6px rgba(45,90,39,.05)}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Plus Jakarta Sans',sans-serif}
+body{background-color:var(--cream);color:var(--navy);min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;background-image:radial-gradient(var(--sage-light) 1px,transparent 1px);background-size:24px 24px}
+header{background:linear-gradient(135deg,var(--sage-primary),#1e3d1a);color:var(--white);padding:1.5rem 1rem;text-align:center;position:relative;box-shadow:0 4px 20px rgba(0,0,0,.1);border-bottom:4px solid var(--gold)}
+header h1{font-family:'Amiri',serif;font-size:1.8rem;margin-bottom:.3rem;color:var(--gold-light)}
+header p{font-size:.95rem;opacity:.9}
+.teacher-btn{position:absolute;top:15px;right:15px;background:rgba(255,255,255,.15);border:1px solid var(--gold);color:var(--white);padding:6px 12px;border-radius:var(--radius-sm);font-size:.8rem;cursor:pointer}
+main{flex:1;max-width:800px;width:100%;margin:1.5rem auto;padding:0 1rem}
+.card-container{background:var(--white);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);border:1px solid rgba(135,169,107,.2);animation:fadeIn .4s ease-in-out}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.progress-indicator{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;font-size:.85rem;font-weight:600;color:var(--sage-primary);text-transform:uppercase;letter-spacing:.5px}
+.progress-bar-track{background:var(--cream-dark);height:8px;border-radius:4px;width:100%;margin-top:6px;overflow:hidden}
+.progress-bar-fill{background:var(--gold);height:100%;width:0%;transition:width .4s ease;border-radius:4px}
+h2.section-title{font-size:1.4rem;color:var(--sage-primary);margin-bottom:1rem;display:flex;align-items:center;gap:10px}
+p.instruction{color:var(--gray-text);font-size:.95rem;margin-bottom:1.5rem;line-height:1.5}
+.form-group{margin-bottom:1.2rem}
+label{display:block;font-weight:600;margin-bottom:.5rem;font-size:.9rem;color:var(--navy)}
+input[type=text],textarea,select{width:100%;padding:12px 15px;border:2px solid var(--cream-dark);border-radius:var(--radius-sm);font-size:1rem;background:var(--cream);transition:all .3s;color:var(--navy)}
+input[type=text]:focus,textarea:focus,select:focus{outline:none;border-color:var(--sage-medium);background:var(--white);box-shadow:0 0 0 4px rgba(135,169,107,.15)}
+textarea{resize:vertical;min-height:100px}
+.mode-selector{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.mode-card{border:2px solid var(--cream-dark);border-radius:var(--radius-md);padding:1rem;text-align:center;cursor:pointer;transition:all .3s;background:var(--cream)}
+.mode-card.active{border-color:var(--sage-primary);background:var(--sage-light);color:var(--sage-primary);font-weight:700}
+.mode-card i{font-size:1.5rem;margin-bottom:.5rem;display:block}
+.group-fields{display:none;background:var(--cream);padding:1rem;border-radius:var(--radius-sm);border:1px dashed var(--sage-medium);margin-bottom:1.2rem}
+.theory-box{background:var(--sage-light);border-left:5px solid var(--sage-primary);padding:1rem 1.2rem;border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin-bottom:1.5rem;font-size:.95rem;line-height:1.6}
+.match-game-container{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
+.match-column{display:flex;flex-direction:column;gap:10px}
+.match-item{background:var(--cream);border:2px solid var(--cream-dark);padding:12px;border-radius:var(--radius-sm);text-align:center;cursor:pointer;font-weight:600;transition:all .2s;user-select:none}
+.match-item:hover{border-color:var(--sage-medium);background:var(--white)}
+.match-item.selected{background:var(--sage-primary);color:var(--white);border-color:var(--sage-primary)}
+.match-item.matched{background:var(--success-green);color:var(--white);border-color:var(--success-green);opacity:.8;cursor:default}
+.grouping-layout{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.item-pool{background:var(--cream);border:2px dashed var(--sage-medium);border-radius:var(--radius-md);padding:1rem;min-height:200px;max-height:350px;overflow-y:auto}
+.drop-zones-container{display:flex;flex-direction:column;gap:10px}
+.drop-zone{background:var(--white);border:2px solid var(--cream-dark);border-radius:var(--radius-sm);padding:10px;min-height:90px;cursor:pointer}
+.drop-zone h4{font-size:.85rem;margin-bottom:6px;color:var(--sage-primary);border-bottom:1px solid var(--cream-dark);padding-bottom:4px}
+.draggable-badge{display:inline-block;background:var(--white);border:1px solid var(--sage-medium);color:var(--navy);padding:6px 10px;border-radius:20px;font-size:.85rem;font-weight:600;margin:4px;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,.05)}
+.dropped-badge{background:var(--sage-light);border:1px solid var(--sage-primary);color:var(--sage-primary);padding:4px 8px;border-radius:12px;font-size:.75rem;font-weight:600;display:inline-block;margin:2px}
+.quiz-question-box{background:var(--cream);border:1px solid var(--cream-dark);border-radius:var(--radius-md);padding:1.2rem;margin-bottom:1.2rem}
+.quiz-options{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.quiz-option{background:var(--white);border:2px solid var(--cream-dark);padding:10px 14px;border-radius:var(--radius-sm);cursor:pointer;font-size:.95rem}
+.quiz-option.selected{background:var(--sage-primary);color:var(--white);border-color:var(--sage-primary)}
+.checklist-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem}
+.checklist-item{display:flex;align-items:center;gap:12px;background:var(--cream);padding:12px 15px;border-radius:var(--radius-sm);border:2px solid var(--cream-dark);cursor:pointer}
+.checklist-item input{width:20px;height:20px;accent-color:var(--sage-primary);cursor:pointer}
+.btn-container{display:flex;justify-content:space-between;margin-top:2rem;gap:10px}
+.btn{padding:12px 24px;border-radius:var(--radius-sm);font-weight:700;font-size:.95rem;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:8px;transition:all .3s}
+.btn-primary{background:var(--sage-primary);color:var(--white);box-shadow:0 4px 12px rgba(45,90,39,.2)}
+.btn-secondary{background:var(--cream-dark);color:var(--navy)}
+.btn-gold{background:var(--gold);color:var(--navy);box-shadow:0 4px 12px rgba(212,175,55,.3)}
+.result-card{background:linear-gradient(135deg,var(--sage-light),var(--cream));border:2px solid var(--sage-medium);border-radius:var(--radius-md);padding:1.5rem;text-align:center;margin-bottom:1.5rem}
+.result-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:1.5rem 0}
+.stat-box{background:var(--white);padding:12px;border-radius:var(--radius-sm);box-shadow:0 2px 6px rgba(0,0,0,.04)}
+.stat-box h3{font-size:.75rem;color:var(--gray-text);text-transform:uppercase}
+.stat-box p{font-size:1.2rem;font-weight:800;color:var(--sage-primary);margin-top:4px}
+.badge-predikat{display:inline-block;background:var(--gold);color:var(--navy);padding:6px 16px;border-radius:20px;font-weight:800;font-size:1.1rem;margin-top:.5rem}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:1000;justify-content:center;align-items:center;padding:1rem}
+.modal-content{background:var(--white);border-radius:var(--radius-lg);width:100%;max-width:600px;padding:2rem;box-shadow:0 20px 25px -5px rgba(0,0,0,.1);max-height:90vh;overflow-y:auto}
+.close-modal{float:right;font-size:1.5rem;cursor:pointer;color:var(--gray-text)}
+#print-report{display:none}
+footer{text-align:center;padding:1.5rem;font-size:.85rem;color:var(--gray-text);border-top:1px solid var(--cream-dark);background:var(--white)}
+@media(max-width:600px){.match-game-container,.grouping-layout{grid-template-columns:1fr}.card-container{padding:1.2rem}.teacher-btn{position:static;margin-bottom:10px}.btn{padding:11px 14px;font-size:.85rem}}
+</style>
+</head>
+<body>
+<header>
+<button class="teacher-btn" onclick="openTeacherModal()"><i class="fas fa-chalkboard-teacher"></i> Mode Guru</button>
+<h1>عقيدة وأخلاق</h1><p>LKPD Digital Interaktif • Madrasah Aliyah</p>
+</header>
+<main>
+<div class="card-container" style="padding:1rem 1.5rem;margin-bottom:1rem">
+<div class="progress-indicator"><span id="progress-title">Halaman 1 dari 8</span><span id="progress-percent">0% Selesai</span></div>
+<div class="progress-bar-track"><div class="progress-bar-fill" id="progress-fill"></div></div>
+</div>
+
+<section id="page-1" class="page-section card-container">
+<h2 class="section-title"><i class="fas fa-user-graduate"></i> Siap Memulai Misi Mengenal Allah?</h2>
+<p class="instruction">Lengkapi identitas belajarmu terlebih dahulu sebelum memulai petualangan spiritual ini.</p>
+<div class="form-group"><label>Nama Lengkap:</label><input type="text" id="input-nama" placeholder="Contoh: Ahmad Zaidan"></div>
+<div class="form-group"><label>Kelas:</label><input type="text" id="input-kelas" placeholder="Contoh: X / X MIPA 1"></div>
+<label>Pilih Mode Pengerjaan:</label>
+<div class="mode-selector">
+<div class="mode-card active" id="mode-individu-card" onclick="setMode('individu')"><i class="fas fa-user"></i><span>Individu</span></div>
+<div class="mode-card" id="mode-kelompok-card" onclick="setMode('kelompok')"><i class="fas fa-users"></i><span>Kelompok</span></div>
+</div>
+<div class="group-fields" id="group-fields-container">
+<div class="form-group"><label>Nama Kelompok:</label><input type="text" id="input-namakelompok" placeholder="Contoh: Kelompok Ash-Shiddiq"></div>
+<div class="form-group"><label>Anggota Kelompok:</label><textarea id="input-anggotakelompok" placeholder="Tuliskan nama-nama anggota kelompok..."></textarea></div>
+</div>
+<div class="btn-container"><div></div><button class="btn btn-primary" onclick="validateAndNext(1)">🚀 MULAI LKPD <i class="fas fa-arrow-right"></i></button></div>
+</section>
+
+<section id="page-2" class="page-section card-container" style="display:none">
+<h2 class="section-title"><i class="fas fa-book-open"></i> Misi 1: Ayo Pahami</h2>
+<div class="theory-box"><strong>Pengantar Materi:</strong><br>Sifat Wajib Allah adalah sifat-sifat yang pasti dimiliki oleh Allah Swt. dan tidak mungkin tidak ada pada-Nya. Terdapat 20 sifat wajib Allah yang terbagi ke dalam empat kelompok: Nafsiyah, Salbiyah, Ma'ani, dan Ma'nawiyah.</div>
+<div class="form-group"><label>1. Dengan bahasamu sendiri, apa yang dimaksud dengan sifat wajib Allah?</label><textarea id="misi1-soal1" placeholder="Tuliskan pemahamanmu di sini..."></textarea></div>
+<div class="form-group"><label>2. Mengapa mengenal sifat-sifat Allah dapat meningkatkan keimanan kita?</label><textarea id="misi1-soal2" placeholder="Tuliskan refleksimu di sini..."></textarea></div>
+<div class="btn-container"><button class="btn btn-secondary" onclick="changePage(1)"><i class="fas fa-arrow-left"></i> Sebelumnya</button><button class="btn btn-primary" onclick="validateAndNext(2)">Lanjut Misi <i class="fas fa-arrow-right"></i></button></div>
+</section>
+
+<section id="page-3" class="page-section card-container" style="display:none">
+<h2 class="section-title"><i class="fas fa-puzzle-piece"></i> Misi 2: Cocokkan Sifat dan Artinya</h2>
+<p class="instruction">Klik kartu sifat di sebelah kiri, lalu klik arti yang sesuai di sebelah kanan!</p>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><span style="font-size:.85rem;font-weight:600;color:var(--sage-primary)">Pasangan Terhubung: <span id="match-score">0</span> / 10</span><button class="btn btn-secondary" style="padding:6px 12px;font-size:.8rem" onclick="initMatchGame()"><i class="fas fa-sync-alt"></i> Acak Soal</button></div>
+<div class="match-game-container"><div class="match-column" id="match-sifat-col"></div><div class="match-column" id="match-arti-col"></div></div>
+<div class="btn-container"><button class="btn btn-secondary" onclick="changePage(2)"><i class="fas fa-arrow-left"></i> Sebelumnya</button><button class="btn btn-primary" onclick="validateAndNext(3)">Lanjut Misi <i class="fas fa-arrow-right"></i></button></div>
+</section>
+
+<section id="page-4" class="page-section card-container" style="display:none">
+<h2 class="section-title"><i class="fas fa-layer-group"></i> Misi 3: Kelompokkan!</h2>
+<p class="instruction">Klik kartu sifat, lalu klik kategori yang tepat. Kelompokkan seluruh 20 sifat wajib Allah.</p>
+<div class="grouping-layout">
+<div><label>Sifat yang Belum Dikelompokkan:</label><div class="item-pool" id="pool-sifat"></div></div>
+<div class="drop-zones-container">
+<div class="drop-zone" onclick="selectCategory('Nafsiyah')"><h4>🟢 NAFSIYAH</h4><div id="zone-Nafsiyah"></div></div>
+<div class="drop-zone" onclick="selectCategory('Salbiyah')"><h4>🟠 SALBIYAH</h4><div id="zone-Salbiyah"></div></div>
+<div class="drop-zone" onclick="selectCategory('Maani')"><h4>🔵 MA’ANI</h4><div id="zone-Maani"></div></div>
+<div class="drop-zone" onclick="selectCategory('Manawiyah')"><h4>🟣 MA’NAWIYAH</h4><div id="zone-Manawiyah"></div></div>
+</div></div>
+<div style="text-align:center;margin-top:1rem"><button class="btn btn-gold" onclick="checkGrouping()"><i class="fas fa-check-circle"></i> Periksa Pengelompokan</button><span id="grouping-feedback" style="display:block;margin-top:8px;font-weight:600;font-size:.9rem"></span></div>
+<div class="btn-container"><button class="btn btn-secondary" onclick="changePage(3)"><i class="fas fa-arrow-left"></i> Sebelumnya</button><button class="btn btn-primary" onclick="validateAndNext(4)">Lanjut Misi <i class="fas fa-arrow-right"></i></button></div>
+</section>
+
+<section id="page-5" class="page-section card-container" style="display:none">
+<h2 class="section-title"><i class="fas fa-brain"></i> Misi 4: Tebak Sifat Allah</h2><p class="instruction">Pilih sifat yang paling tepat berdasarkan petunjuk.</p><div id="quiz-container"></div>
+<div class="btn-container"><button class="btn btn-secondary" onclick="changePage(4)"><i class="fas fa-arrow-left"></i> Sebelumnya</button><button class="btn btn-primary" onclick="validateAndNext(5)">Lanjut Misi <i class="fas fa-arrow-right"></i></button></div>
+</section>
+
+<section id="page-6" class="page-section card-container" style="display:none">
+<h2 class="section-title"><i class="fas fa-heart"></i> Misi 5: Sifat Allah dalam Kehidupanku</h2><p class="instruction">Jawablah pertanyaan reflektif berikut dengan jujur.</p>
+<div class="form-group"><label>1. Sifat Allah apa yang paling membuatmu kagum? Mengapa?</label><textarea id="refleksi-1" placeholder="Tuliskan jawabanmu..."></textarea></div>
+<div class="form-group"><label>2. Jika kamu yakin Allah Maha Melihat (Basar), bagaimana seharusnya sikapmu ketika tidak ada orang lain yang melihatmu?</label><textarea id="refleksi-2" placeholder="Tuliskan jawabanmu..."></textarea></div>
+<div class="form-group"><label>3. Jika kamu yakin Allah Maha Mendengar (Sama’), bagaimana seharusnya kamu menjaga ucapan?</label><textarea id="refleksi-3" placeholder="Tuliskan jawabanmu..."></textarea></div>
+<div class="form-group"><label>4. Tuliskan satu perubahan sikap yang ingin kamu lakukan setelah mempelajari sifat-sifat Allah.</label><textarea id="refleksi-4" placeholder="Tuliskan jawabanmu..."></textarea></div>
+<div class="btn-container"><button class="btn btn-secondary" onclick="changePage(5)"><i class="fas fa-arrow-left"></i> Sebelumnya</button><button class="btn btn-primary" onclick="validateAndNext(6)">Lanjut Misi <i class="fas fa-arrow-right"></i></button></div>
+</section>
+
+<section id="page-7" class="page-section card-container" style="display:none">
+<h2 class="section-title"><i class="fas fa-award"></i> Tantangan Kebaikan</h2><p class="instruction">Pilih minimal 3 tantangan kebaikan yang akan kamu terapkan.</p>
+<div class="checklist-grid" id="checklist-container">
+<label class="checklist-item"><input type="checkbox" value="Berkata jujur"> Berkata jujur</label>
+<label class="checklist-item"><input type="checkbox" value="Menjaga ucapan"> Menjaga ucapan</label>
+<label class="checklist-item"><input type="checkbox" value="Tidak mengejek teman"> Tidak mengejek teman</label>
+<label class="checklist-item"><input type="checkbox" value="Membantu orang lain"> Membantu orang lain</label>
+<label class="checklist-item"><input type="checkbox" value="Menjaga amanah"> Menjaga amanah</label>
+<label class="checklist-item"><input type="checkbox" value="Menghindari perbuatan buruk meskipun tidak ada yang melihat"> Menghindari perbuatan buruk meskipun tidak ada yang melihat</label>
+<label class="checklist-item"><input type="checkbox" value="Bersyukur atas nikmat Allah"> Bersyukur atas nikmat Allah</label>
+<label class="checklist-item"><input type="checkbox" value="Menjaga lingkungan sebagai bentuk syukur kepada Allah"> Menjaga lingkungan sebagai bentuk syukur kepada Allah</label>
+</div>
+<div class="form-group"><label>Kebaikan yang paling ingin saya biasakan adalah...</label><input type="text" id="tantangan-custom" placeholder="Contoh: Selalu berkata sopan"></div>
+<div class="btn-container"><button class="btn btn-secondary" onclick="changePage(6)"><i class="fas fa-arrow-left"></i> Sebelumnya</button><button class="btn btn-gold" onclick="finishLKPD()">🎉 SELESAIKAN MISI LKPD</button></div>
+</section>
+
+<section id="page-8" class="page-section card-container" style="display:none">
+<h2 class="section-title" style="justify-content:center"><i class="fas fa-trophy" style="color:var(--gold)"></i> Misi Selesai!</h2>
+<div class="result-card"><h3 id="res-nama" style="font-size:1.3rem;color:var(--sage-primary)">Nama Murid</h3><p id="res-kelas" style="font-size:.9rem;color:var(--gray-text)">Kelas</p><div class="badge-predikat" id="res-predikat">🌟 Sangat Baik</div>
+<div class="result-stats"><div class="stat-box"><h3>Skor Total</h3><p id="res-skor">0</p></div><div class="stat-box"><h3>Persentase</h3><p id="res-persen">0%</p></div></div>
+<p style="font-style:italic;font-size:.9rem">“Semakin mengenal Allah, semakin besar rasa cinta, takut, berharap, dan tunduk kepada-Nya.”</p></div>
+<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:1.5rem">
+<button class="btn btn-primary" onclick="downloadPDF()"><i class="fas fa-file-pdf"></i> DOWNLOAD HASIL PDF</button>
+<button class="btn btn-gold" onclick="downloadJPG()"><i class="fas fa-image"></i> DOWNLOAD HASIL JPG</button>
+<button class="btn btn-secondary" onclick="resetLKPD()"><i class="fas fa-redo"></i> Mulai Lagi</button>
+</div>
+</section>
+</main>
+
+<div class="modal" id="teacher-modal"><div class="modal-content"><span class="close-modal" onclick="closeTeacherModal()">&times;</span><h2 style="color:var(--sage-primary);margin-bottom:1rem"><i class="fas fa-chalkboard-teacher"></i> Rekap Nilai & Aktivitas Murid</h2><div id="teacher-recap-content"><p>Belum ada data pengerjaan murid.</p></div></div></div>
+
+<div id="print-report">
+<div style="font-family:'Plus Jakarta Sans',sans-serif;padding:40px;color:#1b263b;background:#fff;width:210mm;min-height:297mm;margin:0 auto;box-sizing:border-box">
+<div style="text-align:center;border-bottom:3px double #2d5a27;padding-bottom:15px;margin-bottom:20px"><h2 style="color:#2d5a27;font-family:'Amiri',serif;font-size:22px;margin-bottom:5px">LKPD DIGITAL INTERAKTIF AKIDAH AKHLAK</h2><h3 style="font-size:16px">“Ayo Mengenal Sifat Wajib Allah” - Madrasah Aliyah</h3></div>
+<div style="background:#fbf9f1;padding:12px 15px;border-radius:8px;margin-bottom:20px;font-size:13px;border:1px solid #e8f0e6"><table style="width:100%;border-collapse:collapse"><tr><td><strong>Nama:</strong> <span id="p-nama">-</span></td><td><strong>Kelas:</strong> <span id="p-kelas">-</span></td></tr><tr><td><strong>Mode:</strong> <span id="p-mode">INDIVIDU</span></td><td><strong>Tanggal:</strong> <span id="p-tanggal">-</span></td></tr><tr id="p-group-row" style="display:none"><td colspan="2"><strong>Kelompok:</strong> <span id="p-kelompok">-</span></td></tr></table></div>
+<div style="margin-bottom:15px;font-size:13px"><h4 style="background:#2d5a27;color:#fff;padding:6px 10px;border-radius:4px">📊 Hasil Ringkasan</h4><p><strong>Skor Akhir:</strong> <span id="p-skor">0</span>/100 &nbsp;|&nbsp; <strong>Persentase:</strong> <span id="p-persen">0%</span> &nbsp;|&nbsp; <strong>Predikat:</strong> <span id="p-predikat">-</span></p></div>
+<div style="margin-bottom:15px;font-size:13px"><h4 style="background:#2d5a27;color:#fff;padding:6px 10px;border-radius:4px">📚 Misi 1: Pemahaman</h4><p><strong>1. Pengertian:</strong><br><span id="p-misi1-1">-</span></p><p style="margin-top:8px"><strong>2. Mengapa meningkatkan keimanan:</strong><br><span id="p-misi1-2">-</span></p></div>
+<div style="margin-bottom:15px;font-size:13px"><h4 style="background:#2d5a27;color:#fff;padding:6px 10px;border-radius:4px">🧩 Misi 2 & 3: Game</h4><p>Skor Cocokkan: <span id="p-match-score">0</span>/10 | Skor Pengelompokan: <span id="p-group-score">0</span>/20</p></div>
+<div style="margin-bottom:15px;font-size:13px"><h4 style="background:#2d5a27;color:#fff;padding:6px 10px;border-radius:4px">💡 Refleksi & Tantangan Kebaikan</h4><p><strong>Refleksi 1:</strong><br><span id="p-ref-1">-</span></p><p><strong>Refleksi 2:</strong><br><span id="p-ref-2">-</span></p><p><strong>Refleksi 3:</strong><br><span id="p-ref-3">-</span></p><p><strong>Refleksi 4:</strong><br><span id="p-ref-4">-</span></p><p><strong>Tantangan:</strong> <span id="p-tantangan-list">-</span></p><p><strong>Target:</strong> <span id="p-tantangan-custom">-</span></p></div>
+<div style="margin-top:40px;display:flex;justify-content:space-between;font-size:13px"><div style="text-align:center;width:200px"><p>Mengetahui,</p><p>Guru Mata Pelajaran</p><br><br><br><p>( ......................................... )</p></div><div style="text-align:center;width:200px"><p>Sidenreng Rappang, <span id="p-date-sign">-</span></p><p>Murid / Ketua Kelompok</p><br><br><br><p id="p-sign-name">( ......................................... )</p></div></div>
+</div></div>
+
+<footer><p>&copy; 2026 LKPD Digital Interaktif • Akidah Akhlak Madrasah Aliyah</p></footer>
+
+<script>
+let currentSection=1,workMode='individu',matchScoreVal=0,groupScoreVal=0,quizScoreVal=0,selectedMatchSifat=null,selectedMatchSifatText=null,selectedMatchArtiEl=null,selectedMatchArtiText=null,selectedPoolSifat=null;
+const totalPages=8;
+const sifatData=[
+{name:"Wujud",meaning:"Ada",category:"Nafsiyah"},{name:"Qidam",meaning:"Terdahulu/Awal",category:"Salbiyah"},{name:"Baqa’",meaning:"Kekal",category:"Salbiyah"},{name:"Mukhalafatu lil-hawaditsi",meaning:"Berbeda dengan makhluk",category:"Salbiyah"},{name:"Qiyamuhu binafsihi",meaning:"Berdiri sendiri",category:"Salbiyah"},{name:"Wahdaniyah",meaning:"Tunggal/Esa",category:"Salbiyah"},{name:"Qudrat",meaning:"Berkuasa",category:"Maani"},{name:"Iradat",meaning:"Berkehendak",category:"Maani"},{name:"‘Ilmu",meaning:"Mengetahui",category:"Maani"},{name:"Hayat",meaning:"Hidup",category:"Maani"},{name:"Sama’",meaning:"Mendengar",category:"Maani"},{name:"Basar",meaning:"Melihat",category:"Maani"},{name:"Kalam",meaning:"Berfirman/Berkalam",category:"Maani"},{name:"Qadiran",meaning:"Maha Berkuasa",category:"Manawiyah"},{name:"Muridan",meaning:"Maha Berkehendak",category:"Manawiyah"},{name:"‘Aliman",meaning:"Maha Mengetahui",category:"Manawiyah"},{name:"Hayyan",meaning:"Maha Hidup",category:"Manawiyah"},{name:"Sami’an",meaning:"Maha Mendengar",category:"Manawiyah"},{name:"Basiran",meaning:"Maha Melihat",category:"Manawiyah"},{name:"Mutakalliman",meaning:"Maha Berfirman/Berkalam",category:"Manawiyah"}];
+const quizData=[
+{q:"Allah pasti ada dan keberadaan-Nya tidak didahului oleh ketiadaan.",options:["Wujud","Baqa’","Qudrat","Hayat"],answer:"Wujud"},
+{q:"Allah Swt. tidak sama dan tidak menyerupai makhluk ciptaan-Nya.",options:["Qiyamuhu binafsihi","Mukhalafatu lil-hawaditsi","Wahdaniyah","Qidam"],answer:"Mukhalafatu lil-hawaditsi"},
+{q:"Allah Maha Mendengar segala suara yang ada di alam semesta tanpa batasan.",options:["Basar","Sama’","Kalam","‘Ilmu"],answer:"Sama’"},
+{q:"Allah Swt. Maha Berkehendak atas segala sesuatu yang terjadi di alam raya.",options:["Qudrat","Muridan","Iradat","‘Aliman"],answer:"Iradat"},
+{q:"Sifat wajib yang menunjukkan bahwa Allah Swt. Maha Hidup dan tidak pernah mati adalah...",options:["Hayat","Baqa’","Qidam","Wujud"],answer:"Hayat"}];
+
+window.onload=()=>{initMatchGame();initGroupingGame();initQuiz();updateProgress()};
+
+function setMode(mode){workMode=mode;document.getElementById('mode-individu-card').classList.toggle('active',mode==='individu');document.getElementById('mode-kelompok-card').classList.toggle('active',mode==='kelompok');document.getElementById('group-fields-container').style.display=mode==='kelompok'?'block':'none'}
+function changePage(target){document.getElementById(`page-${currentSection}`).style.display='none';currentSection=target;document.getElementById(`page-${currentSection}`).style.display='block';window.scrollTo({top:0,behavior:'smooth'});updateProgress()}
+function updateProgress(){const p=Math.round(((currentSection-1)/(totalPages-1))*100);document.getElementById('progress-title').innerText=`Halaman ${currentSection} dari ${totalPages}`;document.getElementById('progress-percent').innerText=`${p}% Selesai`;document.getElementById('progress-fill').style.width=`${p}%`}
+function validateAndNext(page){
+if(page===1){if(!document.getElementById('input-nama').value.trim()||!document.getElementById('input-kelas').value.trim()){alert('Mohon isi Nama Lengkap dan Kelas terlebih dahulu!');return}}
+if(page===2&&!document.getElementById('misi1-soal1').value.trim()&&!document.getElementById('misi1-soal2').value.trim()){alert('Isi minimal satu jawaban pada Misi 1 sebelum melanjutkan.');return}
+if(page===3&&matchScoreVal<10){if(!confirm('Misi mencocokkan belum selesai. Tetap lanjut?'))return}
+if(page===4&&groupScoreVal<20){if(!confirm('Pengelompokan belum diperiksa atau belum sempurna. Tetap lanjut?'))return}
+if(page===5&&quizScoreVal<5){if(!confirm('Belum semua jawaban kuis benar. Tetap lanjut?'))return}
+if(page===6){const refs=[1,2,3,4].map(i=>document.getElementById(`refleksi-${i}`).value.trim());if(refs.some(x=>!x)){alert('Mohon lengkapi seluruh jawaban refleksi.');return}}
+changePage(page+1)
+}
+
+function initMatchGame(){
+matchScoreVal=0;selectedMatchSifat=selectedMatchSifatText=selectedMatchArtiEl=selectedMatchArtiText=null;document.getElementById('match-score').innerText='0';
+const sc=document.getElementById('match-sifat-col'),ac=document.getElementById('match-arti-col');sc.innerHTML='';ac.innerHTML='';
+const chosen=[...sifatData].sort(()=>Math.random()-.5).slice(0,10), meanings=[...chosen].sort(()=>Math.random()-.5);
+chosen.forEach(x=>{const d=document.createElement('div');d.className='match-item';d.innerText=x.name;d.dataset.name=x.name;d.onclick=()=>selectMatchSifat(d,x.name);sc.appendChild(d)});
+meanings.forEach(x=>{const d=document.createElement('div');d.className='match-item';d.innerText=x.meaning;d.dataset.meaning=x.meaning;d.onclick=()=>selectMatchArti(d,x.meaning);ac.appendChild(d)})
+}
+function selectMatchSifat(el,name){if(el.classList.contains('matched'))return;document.querySelectorAll('#match-sifat-col .match-item').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');selectedMatchSifat=el;selectedMatchSifatText=name;checkMatchPair()}
+function selectMatchArti(el,meaning){if(el.classList.contains('matched'))return;document.querySelectorAll('#match-arti-col .match-item').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');selectedMatchArtiEl=el;selectedMatchArtiText=meaning;checkMatchPair()}
+function checkMatchPair(){if(!selectedMatchSifatText||!selectedMatchArtiText)return;const ok=sifatData.some(s=>s.name===selectedMatchSifatText&&s.meaning===selectedMatchArtiText);if(ok){selectedMatchSifat.classList.remove('selected');selectedMatchSifat.classList.add('matched');selectedMatchSifat.innerHTML=selectedMatchSifatText+' ✓';selectedMatchArtiEl.classList.remove('selected');selectedMatchArtiEl.classList.add('matched');selectedMatchArtiEl.innerHTML=selectedMatchArtiText+' ✓';matchScoreVal++;document.getElementById('match-score').innerText=matchScoreVal}else{alert('Belum tepat, coba lagi!');selectedMatchSifat.classList.remove('selected');selectedMatchArtiEl.classList.remove('selected')}selectedMatchSifat=selectedMatchSifatText=selectedMatchArtiEl=selectedMatchArtiText=null}
+
+function initGroupingGame(){const pool=document.getElementById('pool-sifat');pool.innerHTML='';['Nafsiyah','Salbiyah','Maani','Manawiyah'].forEach(c=>document.getElementById(`zone-${c}`).innerHTML='');groupScoreVal=0;document.getElementById('grouping-feedback').innerText='';[...sifatData].sort(()=>Math.random()-.5).forEach(x=>{const b=document.createElement('span');b.className='draggable-badge';b.innerText=x.name;b.dataset.name=x.name;b.onclick=()=>selectPoolItem(b,x.name);pool.appendChild(b)})}
+function selectPoolItem(el,name){document.querySelectorAll('.draggable-badge').forEach(x=>x.style.borderColor='var(--sage-medium)');el.style.borderColor='var(--gold)';selectedPoolSifat={element:el,name}}
+function selectCategory(cat){if(!selectedPoolSifat){alert('Pilih kartu sifat terlebih dahulu!');return}const z=document.getElementById(`zone-${cat}`),d=document.createElement('span');d.className='dropped-badge';d.innerText=selectedPoolSifat.name;d.dataset.name=selectedPoolSifat.name;d.dataset.category=cat;z.appendChild(d);selectedPoolSifat.element.remove();selectedPoolSifat=null}
+function checkGrouping(){let correct=0,total=0;sifatData.forEach(item=>{const z=document.getElementById(`zone-${item.category}`);z.querySelectorAll('.dropped-badge').forEach(b=>{total++;if(b.dataset.name===item.name)correct++})});groupScoreVal=correct;const f=document.getElementById('grouping-feedback');f.style.color=correct===20?'var(--success-green)':'var(--error-red)';f.innerText=correct===20?`MasyaAllah! Semua 20 pengelompokan tepat!`:`Benar ${correct} dari ${total} sifat yang ditempatkan. Periksa kembali!`}
+
+function initQuiz(){const c=document.getElementById('quiz-container');c.innerHTML='';quizScoreVal=0;quizData.forEach((x,i)=>{const q=document.createElement('div');q.className='quiz-question-box';q.innerHTML=`<p style="font-weight:600;margin-bottom:8px">Soal ${i+1}: ${x.q}</p><div class="quiz-options" id="quiz-opts-${i}"></div><p id="quiz-fb-${i}" style="margin-top:8px;font-weight:600;font-size:.85rem"></p>`;c.appendChild(q);x.options.forEach(o=>{const b=document.createElement('div');b.className='quiz-option';b.innerText=o;b.onclick=()=>answerQuiz(i,o,x.answer,b);document.getElementById(`quiz-opts-${i}`).appendChild(b)})})}
+function answerQuiz(i,selected,correct,btn){const p=document.getElementById(`quiz-opts-${i}`);if(p.dataset.answered==='true')return;p.querySelectorAll('.quiz-option').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected');p.dataset.answered='true';const fb=document.getElementById(`quiz-fb-${i}`);if(selected===correct){fb.style.color='var(--success-green)';fb.innerText='✅ MasyaAllah! Jawabanmu tepat.';quizScoreVal++}else{fb.style.color='var(--error-red)';fb.innerText=`❌ Belum tepat. Jawaban yang benar: ${correct}`}}
+
+function finishLKPD(){const required=['misi1-soal1','misi1-soal2','refleksi-1','refleksi-2','refleksi-3','refleksi-4'];if(required.some(id=>!document.getElementById(id).value.trim())){alert('Mohon lengkapi seluruh jawaban Misi 1 dan Refleksi terlebih dahulu.');return}const checked=[...document.querySelectorAll('#checklist-container input:checked')];if(checked.length<3){alert('Pilih minimal 3 Tantangan Kebaikan.');return}
+const s1=20,s2=(matchScoreVal/10)*20,s3=(groupScoreVal/20)*25,s4=(quizScoreVal/5)*20,s5=15,total=Math.min(100,Math.round(s1+s2+s3+s4+s5));let pred=total>=90?'🌟 Sangat Baik':total>=80?'⭐ Baik':total>=70?'👍 Cukup Baik':'💪 Terus Belajar';
+document.getElementById('res-nama').innerText=document.getElementById('input-nama').value;document.getElementById('res-kelas').innerText=document.getElementById('input-kelas').value;document.getElementById('res-skor').innerText=total;document.getElementById('res-persen').innerText=total+'%';document.getElementById('res-predikat').innerText=pred;saveToTeacherLog(total,pred);changePage(8)}
+function saveToTeacherLog(score,pred){let logs=[];try{logs=JSON.parse(localStorage.getItem('lkpd_akidah_logs')||'[]')}catch(e){}logs.push({nama:document.getElementById('input-nama').value,kelas:document.getElementById('input-kelas').value,mode:workMode,kelompok:document.getElementById('input-namakelompok').value||'-',score,predikat:pred,date:new Date().toLocaleDateString('id-ID')});try{localStorage.setItem('lkpd_akidah_logs',JSON.stringify(logs))}catch(e){}}
+function openTeacherModal(){document.getElementById('teacher-modal').style.display='flex';const c=document.getElementById('teacher-recap-content');let logs=[];try{logs=JSON.parse(localStorage.getItem('lkpd_akidah_logs')||'[]')}catch(e){}if(!logs.length){c.innerHTML='<p>Belum ada rekap pengerjaan murid yang tersimpan.</p>';return}c.innerHTML='<table style="width:100%;border-collapse:collapse;font-size:.9rem"><thead><tr style="background:var(--sage-light)"><th style="padding:8px;border:1px solid var(--cream-dark)">Nama</th><th style="padding:8px;border:1px solid var(--cream-dark)">Kelas</th><th style="padding:8px;border:1px solid var(--cream-dark)">Skor</th><th style="padding:8px;border:1px solid var(--cream-dark)">Predikat</th></tr></thead><tbody>'+logs.map(l=>`<tr><td style="padding:8px;border:1px solid var(--cream-dark)">${escapeHtml(l.nama)}</td><td style="padding:8px;border:1px solid var(--cream-dark)">${escapeHtml(l.kelas)}</td><td style="padding:8px;border:1px solid var(--cream-dark);text-align:center">${l.score}</td><td style="padding:8px;border:1px solid var(--cream-dark)">${escapeHtml(l.predikat)}</td></tr>`).join('')+'</tbody></table>'}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function closeTeacherModal(){document.getElementById('teacher-modal').style.display='none'}
+function preparePrintData(){const g=id=>document.getElementById(id);g('p-nama').innerText=g('input-nama').value||'-';g('p-kelas').innerText=g('input-kelas').value||'-';g('p-mode').innerText=workMode.toUpperCase();g('p-tanggal').innerText=new Date().toLocaleDateString('id-ID');g('p-date-sign').innerText=new Date().toLocaleDateString('id-ID');g('p-sign-name').innerText=`(${g('input-nama').value||'.........................'})`;if(workMode==='kelompok'){g('p-group-row').style.display='table-row';g('p-kelompok').innerText=(g('input-namakelompok').value||'-')+' (Anggota: '+(g('input-anggotakelompok').value||'-')+')'}else g('p-group-row').style.display='none';g('p-skor').innerText=g('res-skor').innerText;g('p-persen').innerText=g('res-persen').innerText;g('p-predikat').innerText=g('res-predikat').innerText;g('p-misi1-1').innerText=g('misi1-soal1').value||'-';g('p-misi1-2').innerText=g('misi1-soal2').value||'-';g('p-match-score').innerText=matchScoreVal;g('p-group-score').innerText=groupScoreVal;['1','2','3','4'].forEach(i=>g('p-ref-'+i).innerText=g('refleksi-'+i).value||'-');const items=[...document.querySelectorAll('#checklist-container input:checked')].map(x=>x.value);g('p-tantangan-list').innerText=items.length?items.join(', '):'-';g('p-tantangan-custom').innerText=g('tantangan-custom').value||'-'}
+function downloadPDF(){preparePrintData();const el=document.getElementById('print-report');el.style.display='block';if(typeof html2pdf==='undefined'){alert('Library PDF belum termuat. Gunakan cetak browser dan pilih Save as PDF.');window.print();el.style.display='none';return}html2pdf().from(el).set({margin:0,filename:`LKPD_Akidah_Akhlak_${(document.getElementById('input-nama').value||'Murid').replace(/\s+/g,'_')}.pdf`,image:{type:'jpeg',quality:.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}}).save().then(()=>el.style.display='none')}
+function downloadJPG(){preparePrintData();const el=document.getElementById('print-report');el.style.display='block';if(typeof html2canvas==='undefined'){alert('Library JPG belum termuat. Silakan coba lagi saat terhubung internet.');el.style.display='none';return}html2canvas(el,{scale:2,useCORS:true,backgroundColor:'#fff'}).then(canvas=>{el.style.display='none';const a=document.createElement('a');a.download=`LKPD_Akidah_Akhlak_${(document.getElementById('input-nama').value||'Murid').replace(/\s+/g,'_')}.jpg`;a.href=canvas.toDataURL('image/jpeg',.95);a.click()}).catch(()=>{el.style.display='none';alert('Ekspor JPG gagal. Silakan coba kembali.')})}
+function resetLKPD(){if(confirm('Apakah Anda yakin ingin mengulang LKPD dari awal? Semua jawaban akan direset.'))location.reload()}
+</script>
+</body>
+</html>
