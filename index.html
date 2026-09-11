@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LKPD Digital Interaktif - Ayo Mengenal Sifat Wajib Allah</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2pdf.js & html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        :root {
+            --sage-primary: #1f4e3b;
+            --sage-light: #e6f0eb;
+            --sage-medium: #52796f;
+            --cream: #fbf9f1;
+            --cream-dark: #f0ebe1;
+            --navy: #1b263b;
+            --gold: #d4af37;
+            --gold-light: #fdf6d8;
+            --white: #ffffff;
+            --gray-text: #4a5568;
+            --error-red: #c53030;
+            --success-green: #2f855a;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+            --radius-sm: 10px;
+            --shadow: 0 15px 35px -5px rgba(31, 78, 59, 0.12), 0 8px 15px -6px rgba(31, 78, 59, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(251, 249, 241, 0.92), rgba(251, 249, 241, 0.92)), url('https://raw.githubusercontent.com/meystore83-sudo/Sel-hewan-tumbuhan-biologi/658d68b94ba463f7ced9664a9551037cb6ef7a70/Untitled%20design.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--navy);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--sage-primary), #113324);
+            color: var(--white);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+            border-bottom: 4px solid var(--gold);
+        }
+
+        header h1 {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            margin-bottom: 0.3rem;
+            color: var(--gold-light);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.95;
+            letter-spacing: 0.5px;
+        }
+
+        .header-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .header-btn {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid var(--gold);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .header-btn:hover {
+            background: var(--gold);
+            color: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        main {
+            flex: 1;
+            max-width: 850px;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card-container {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: 2.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--sage-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .progress-bar-track {
+            background: var(--cream-dark);
+            height: 10px;
+            border-radius: 5px;
+            width: 100%;
+            margin-top: 8px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, var(--sage-medium), var(--gold));
+            height: 100%;
+            width: 0%;
+            transition: width 0.4s ease;
+            border-radius: 5px;
+        }
+
+        h2.section-title {
+            font-size: 1.5rem;
+            color: var(--sage-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+        }
+
+        p.instruction {
+            color: var(--gray-text);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .form-group { margin-bottom: 1.4rem; }
+
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--navy);
+        }
+
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--cream-dark);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            background: var(--cream);
+            transition: all 0.3s;
+            color: var(--navy);
+        }
+
+        input[type="text"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--sage-medium);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(82, 121, 111, 0.15);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .mode-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mode-card {
+            border: 2px solid var(--cream-dark);
+            border-radius: var(--radius-md);
+            padding: 1.2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--cream);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .mode-card.active {
+            border-color: var(--sage-primary);
+            background: var(--sage-light);
+            color: var(--sage-primary);
+            font-weight: 700;
+            box-shadow: 0 6px 15px rgba(31, 78, 59, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .mode-card i {
+            font-size: 1.8rem;
+            margin-bottom: 0.6rem;
+            display: block;
+            color: var(--sage-medium);
+        }
+
+        .mode-card.active i { color: var(--sage-primary); }
+
+        .theory-box {
+            background: var(--sage-light);
+            border-left: 6px solid var(--sage-primary);
+            padding: 1.2rem 1.5rem;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--navy);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .match-game-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media(max-width: 600px) {
+            .match-game-container, .grouping-layout { grid-template-columns: 1fr; }
+            .header-controls { position: static; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+            header h1 { font-size: 1.6rem; }
+            .card-container { padding: 1.4rem; }
+            .btn-container { flex-wrap: wrap; }
+        }
+
+        .match-column {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .match-item {
+            background: var(--cream);
+            border: 2px solid var(--cream-dark);
+            padding: 14px;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.25s;
+            user-select: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .match-item:hover {
+            border-color: var(--sage-medium);
+            background: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .match-item.selected {
+            background: var(--sage-primary);
+            color: var(--white);
+            border-color: var(--sage-primary);
+            box-shadow: 0 4px 12px rgba(31, 78, 59, 0.25);
+        }
+
+        .match-item.matched {
+            background: var(--success-green);
+            color: var(--white);
+            border-color: var(--success-green);
+            opacity: 0.85;
+            cursor: default;
+        }
+
+        .grouping-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .item-pool {
+            background: var(--cream);
+            border: 2px dashed var(--sage-medium);
+            border-radius: var(--radius-md);
+            padding: 1.2rem;
+            min-height: 220px;
+            max-height: 380px;
+            overflow-y: auto;
+        }
+
+        .drop-zones-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .drop-zone {
+            background: var(--white);
+            border: 2px solid var(--cream-dark);
+            border-radius: var(--radius-sm);
+            padding: 12px;
+            min-height: 95px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: all 0.2s;
+        }
+
+        .drop-zone:hover { border-color: var(--sage-medium); }
+
+        .drop-zone h4 {
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            color: var(--sage-primary);
+            border-bottom: 1px solid var(--cream-dark);
+            padding-bottom: 4px;
+        }
+
+        .draggable-badge {
+            display: inline-block;
+            background: var(--white);
+            border: 2px solid var(--sage-medium);
+            color: var(--navy);
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin: 4px;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.04);
+            transition: all 0.2s;
+        }
+
+        .draggable-badge:hover {
+            background: var(--sage-primary);
+            color: var(--white);
+            border-color: var(--sage-primary);
+            transform: translateY(-2px);
+        }
+
+        .dropped-badge {
+            background: var(--sage-light);
+            border: 1px solid var(--sage-primary);
+            color: var(--sage-primary);
+            padding: 5px 10px;
+            border-radius: 14px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .quiz-question-box {
+            background: var(--cream);
+            border: 1px solid var(--cream-dark);
+            border-radius: var(--radius-md);
+            padding: 1.4rem;
+            margin-bottom: 1.4rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .quiz-option {
+            background: var(--white);
+            border: 2px solid var(--cream-dark);
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--sage-medium);
+            background: var(--sage-light);
+        }
+
+        .quiz-option.selected {
+            background: var(--sage-primary);
+            color: var(--white);
+            border-color: var(--sage-primary);
+        }
+
+        .checklist-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: var(--cream);
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--cream-dark);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+
+        .checklist-item:hover {
+            border-color: var(--sage-medium);
+            background: var(--white);
+        }
+
+        .checklist-item input {
+            width: 22px;
+            height: 22px;
+            accent-color: var(--sage-primary);
+            cursor: pointer;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2.2rem;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 13px 26px;
+            border-radius: var(--radius-sm);
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .btn-primary { background: var(--sage-primary); color: var(--white); }
+
+        .btn-primary:hover {
+            background: #113324;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(31, 78, 59, 0.25);
+        }
+
+        .btn-secondary { background: var(--cream-dark); color: var(--navy); }
+
+        .btn-secondary:hover {
+            background: #e2dcd0;
+            transform: translateY(-2px);
+        }
+
+        .btn-gold { background: var(--gold); color: var(--navy); }
+
+        .btn-gold:hover {
+            background: #c29f2e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, var(--sage-light), var(--cream));
+            border: 2px solid var(--sage-medium);
+            border-radius: var(--radius-md);
+            padding: 1.8rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+
+        .result-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 1.5rem 0;
+        }
+
+        .stat-box {
+            background: var(--white);
+            padding: 14px;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+        }
+
+        .stat-box h3 {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-box p {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--sage-primary);
+            margin-top: 6px;
+        }
+
+        .badge-predikat {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        .feedback-popup {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.2s ease-in-out;
+        }
+
+        .feedback-content {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            max-width: 360px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popUp {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .feedback-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .feedback-message {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--navy);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 650px;
+            padding: 2.2rem;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close-modal {
+            float: right;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--gray-text);
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover { color: var(--error-red); }
+
+        #print-report { display: none; }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--gray-text);
+            border-top: 1px solid var(--cream-dark);
+            background: rgba(255, 255, 255, 0.9);
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-music" loop>
+        <source src="https://raw.githubusercontent.com/meystore83-sudo/Sel-hewan-tumbuhan-biologi/4400cd647d9cfbbc610e6491a207cac77f23fdc3/Musik-LKM-Sifat-Wajib-Allah.mp" type="audio/mpeg">
+    </audio>
+
+    <div class="feedback-popup" id="feedback-popup">
+        <div class="feedback-content" id="feedback-box-content">
+            <div class="feedback-icon" id="fb-icon">✅</div>
+            <div class="feedback-message" id="fb-text">Jawaban Benar!</div>
+            <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="closeFeedbackPopup()">Lanjutkan</button>
+        </div>
+    </div>
+
+    <header>
+        <div class="header-controls">
+            <button class="header-btn" onclick="goHome()"><i class="fas fa-home"></i> Home</button>
+            <button class="header-btn" id="music-toggle-btn" onclick="toggleMusic()"><i class="fas fa-volume-mute"></i> Musik</button>
+            <button class="header-btn" onclick="openTeacherModal()"><i class="fas fa-chalkboard-teacher"></i> Guru</button>
+        </div>
+        <h1>مادة العقيدة الأخلاق</h1>
+        <p>LKPD Digital Interaktif • Madrasah Aliyah</p>
+    </header>
+
+    <main>
+        <div class="card-container" style="padding: 1.2rem 1.8rem; margin-bottom: 1.2rem;">
+            <div class="progress-indicator">
+                <span id="progress-title">Halaman 1 dari 8</span>
+                <span id="progress-percent">0% Selesai</span>
+            </div>
+            <div class="progress-bar-track">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <section id="page-1" class="page-section card-container">
+            <h2 class="section-title"><i class="fas fa-user-graduate"></i> Siap Memulai Misi Mengenal Allah?</h2>
+            <p class="instruction">Pilih mode pengerjaan dan lengkapi identitas belajarmu sebelum memulai petualangan spiritual ini.</p>
+
+            <form id="identity-form">
+                <label>Pilih Mode Pengerjaan:</label>
+                <div class="mode-selector">
+                    <div class="mode-card active" id="mode-individu-card" onclick="setMode('individu')">
+                        <i class="fas fa-user"></i>
+                        <span>Individu</span>
+                    </div>
+                    <div class="mode-card" id="mode-kelompok-card" onclick="setMode('kelompok')">
+                        <i class="fas fa-users"></i>
+                        <span>Kelompok</span>
+                    </div>
+                </div>
+
+                <div id="individu-fields-container">
+                    <div class="form-group">
+                        <label>Nama Lengkap:</label>
+                        <input type="text" id="input-nama" placeholder="Contoh: Ahmad Zaidan">
+                    </div>
+                    <div class="form-group">
+                        <label>Kelas:</label>
+                        <input type="text" id="input-kelas" placeholder="Contoh: XI MIPA 1 / Kelas X Madrasah Aliyah">
+                    </div>
+                </div>
+
+                <div class="group-fields" id="group-fields-container" style="display:none;">
+                    <div class="form-group">
+                        <label>Nama Kelompok:</label>
+                        <input type="text" id="input-namakelompok" placeholder="Contoh: Kelompok Ash-Shiddiq">
+                    </div>
+                    <div class="form-group">
+                        <label>Kelas / Anggota Kelompok:</label>
+                        <textarea id="input-anggotakelompok" placeholder="Tuliskan nama-nama anggota kelompok serta kelas di sini..."></textarea>
+                    </div>
+                </div>
+            </form>
+
+            <div class="btn-container">
+                <div></div>
+                <button class="btn btn-primary" onclick="validateAndNext(1)">🚀 MULAI LKPD <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <section id="page-2" class="page-section card-container" style="display:none;">
+            <h2 class="section-title"><i class="fas fa-book-open"></i> Misi 1: Ayo Pahami</h2>
+            <div class="theory-box">
+                <strong>Pengantar Materi:</strong><br>
+                Sifat Wajib Allah adalah sifat-sifat yang pasti dimiliki oleh Allah Swt. dan tidak mungkin tidak ada pada-Nya. Terdapat 20 sifat wajib Allah yang terbagi ke dalam empat kelompok: Nafsiyah, Salbiyah, Ma'ani, dan Ma'nawiyah.
+            </div>
+
+            <div class="form-group">
+                <label>1. Dengan bahasamu sendiri, apa yang dimaksud dengan sifat wajib Allah?</label>
+                <textarea id="misi1-soal1" placeholder="Tuliskan pemahamanmu di sini..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>2. Mengapa mengenal sifat-sifat Allah dapat meningkatkan keimanan kita?</label>
+                <textarea id="misi1-soal2" placeholder="Tuliskan refleksimu di sini..."></textarea>
+            </div>
+
+            <div class="btn-container">
+                <button class="btn btn-secondary" onclick="changePage(1)"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                <button class="btn btn-primary" onclick="validateAndNext(2)">Lanjut Misi <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <section id="page-3" class="page-section card-container" style="display:none;">
+            <h2 class="section-title"><i class="fas fa-puzzle-piece"></i> Misi 2: Cocokkan Sifat dan Artinya</h2>
+            <p class="instruction">Klik kartu sifat di sebelah kiri, lalu klik arti yang sesuai di sebelah kanan untuk memasangkannya!</p>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <span style="font-size: 0.9rem; font-weight: 700; color: var(--sage-primary);">Pasangan Terhubung: <span id="match-score">0</span> / 10</span>
+                <button class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;" onclick="initMatchGame()"><i class="fas fa-sync-alt"></i> Acak Soal</button>
+            </div>
+
+            <div class="match-game-container">
+                <div class="match-column" id="match-sifat-col"></div>
+                <div class="match-column" id="match-arti-col"></div>
+            </div>
+
+            <div class="btn-container">
+                <button class="btn btn-secondary" onclick="changePage(2)"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                <button class="btn btn-primary" onclick="validateAndNext(3)">Lanjut Misi <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <section id="page-4" class="page-section card-container" style="display:none;">
+            <h2 class="section-title"><i class="fas fa-layer-group"></i> Misi 3: Kelompokkan!</h2>
+            <p class="instruction">Klik pada kartu sifat, lalu klik kotak kategori yang tepat untuk mengelompokkan 20 sifat wajib Allah.</p>
+
+            <div class="grouping-layout">
+                <div>
+                    <label style="margin-bottom: 6px;">Sifat yang Belum Dikelompokkan:</label>
+                    <div class="item-pool" id="pool-sifat"></div>
+                </div>
+                <div class="drop-zones-container">
+                    <div class="drop-zone" onclick="selectCategory('Nafsiyah')">
+                        <h4>🟢 NAFSIYAH</h4>
+                        <div id="zone-Nafsiyah"></div>
+                    </div>
+                    <div class="drop-zone" onclick="selectCategory('Salbiyah')">
+                        <h4>🟠 SALBIYAH</h4>
+                        <div id="zone-Salbiyah"></div>
+                    </div>
+                    <div class="drop-zone" onclick="selectCategory('Maani')">
+                        <h4>🔵 MA’ANI</h4>
+                        <div id="zone-Maani"></div>
+                    </div>
+                    <div class="drop-zone" onclick="selectCategory('Manawiyah')">
+                        <h4>🟣 MA’NAWIYAH</h4>
+                        <div id="zone-Manawiyah"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 1.2rem;">
+                <button class="btn btn-gold" onclick="checkGrouping()"><i class="fas fa-check-circle"></i> Periksa Jawaban Pengelompokan</button>
+                <span id="grouping-feedback" style="display:block; margin-top: 10px; font-weight: 700; font-size: 0.95rem;"></span>
+            </div>
+
+            <div class="btn-container">
+                <button class="btn btn-secondary" onclick="changePage(3)"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                <button class="btn btn-primary" onclick="validateAndNext(4)">Lanjut Misi <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <section id="page-5" class="page-section card-container" style="display:none;">
+            <h2 class="section-title"><i class="fas fa-brain"></i> Misi 4: Tebak Sifat Allah</h2>
+            <p class="instruction">Pilih sifat yang paling tepat berdasarkan petunjuk yang diberikan.</p>
+
+            <div id="quiz-container"></div>
+
+            <div class="btn-container">
+                <button class="btn btn-secondary" onclick="changePage(4)"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                <button class="btn btn-primary" onclick="validateAndNext(5)">Lanjut Misi <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <section id="page-6" class="page-section card-container" style="display:none;">
+            <h2 class="section-title"><i class="fas fa-heart"></i> Misi 5: Sifat Allah dalam Kehidupan Ku</h2>
+            <p class="instruction">Jawablah pertanyaan reflektif berikut dengan jujur dan sungguh-sungguh.</p>
+
+            <div class="form-group">
+                <label>1. Sifat Allah apa yang paling membuatmu kagum? Mengapa?</label>
+                <textarea id="refleksi-1" placeholder="Tuliskan jawabanmu..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>2. Jika kamu yakin Allah Maha Melihat (Basar), bagaimana seharusnya sikapmu ketika tidak ada orang lain yang melihatmu?</label>
+                <textarea id="refleksi-2" placeholder="Tuliskan jawabanmu..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>3. Jika kamu yakin Allah Maha Mendengar (Sama’), bagaimana seharusnya kamu menjaga ucapan?</label>
+                <textarea id="refleksi-3" placeholder="Tuliskan jawabanmu..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>4. Tuliskan satu perubahan sikap yang ingin kamu lakukan setelah mempelajari sifat-sifat Allah.</label>
+                <textarea id="refleksi-4" placeholder="Tuliskan jawabanmu..."></textarea>
+            </div>
+
+            <div class="btn-container">
+                <button class="btn btn-secondary" onclick="changePage(5)"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                <button class="btn btn-primary" onclick="validateAndNext(6)">Lanjut Misi <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <section id="page-7" class="page-section card-container" style="display:none;">
+            <h2 class="section-title"><i class="fas fa-award"></i> Tantangan Kebaikan</h2>
+            <p class="instruction">Buktikan bahwa mengenal Allah mengubah perilakumu! Pilih minimal 3 tantangan kebaikan yang akan kamu terapkan:</p>
+
+            <div class="checklist-grid" id="checklist-container">
+                <label class="checklist-item"><input type="checkbox" value="Berkata jujur"> Berkata jujur</label>
+                <label class="checklist-item"><input type="checkbox" value="Menjaga ucapan"> Menjaga ucapan</label>
+                <label class="checklist-item"><input type="checkbox" value="Tidak mengejek teman"> Tidak mengejek teman</label>
+                <label class="checklist-item"><input type="checkbox" value="Membantu orang lain"> Membantu orang lain</label>
+                <label class="checklist-item"><input type="checkbox" value="Menjaga amanah"> Menjaga amanah</label>
+                <label class="checklist-item"><input type="checkbox" value="Menghindari perbuatan buruk meskipun tidak ada yang melihat"> Menghindari perbuatan buruk meskipun tidak ada yang melihat</label>
+                <label class="checklist-item"><input type="checkbox" value="Bersyukur atas nikmat Allah"> Bersyukur atas nikmat Allah</label>
+                <label class="checklist-item"><input type="checkbox" value="Menjaga lingkungan sebagai bentuk syukur kepada Allah"> Menjaga lingkungan sebagai bentuk syukur kepada Allah</label>
+            </div>
+
+            <div class="form-group">
+                <label>Kebaikan yang paling ingin saya biasakan adalah...</label>
+                <input type="text" id="tantangan-custom" placeholder="Contoh: Selalu shalat tepat waktu dan berkata sopan">
+            </div>
+
+            <div class="btn-container">
+                <button class="btn btn-secondary" onclick="changePage(6)"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                <button class="btn btn-gold" onclick="finishLKPD()">🎉 SELESAIKAN MISI LKPD</button>
+            </div>
+        </section>
+
+        <section id="page-8" class="page-section card-container" style="display:none;">
+            <h2 class="section-title" style="justify-content: center;"><i class="fas fa-trophy" style="color: var(--gold);"></i> Misi Selesai!</h2>
+
+            <div class="result-card">
+                <h3 id="res-nama" style="font-size: 1.4rem; color: var(--sage-primary);">Nama Murid</h3>
+                <p id="res-kelas" style="font-size: 0.95rem; color: var(--gray-text);">Kelas</p>
+                <div class="badge-predikat" id="res-predikat">🌟 Sangat Baik</div>
+
+                <div class="result-stats">
+                    <div class="stat-box">
+                        <h3>Skor Total</h3>
+                        <p id="res-skor">0</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Persentase</h3>
+                        <p id="res-persen">0%</p>
+                    </div>
+                </div>
+                <p style="font-style: italic; font-size: 0.95rem; color: var(--navy); line-height: 1.6;">“Semakin mengenal Allah, semakin besar rasa cinta, takut, berharap, dan tunduk kepada-Nya.”</p>
+            </div>
+
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+                <button class="btn btn-primary" onclick="downloadPDF()"><i class="fas fa-file-pdf"></i> DOWNLOAD HASIL PDF</button>
+                <button class="btn btn-gold" onclick="downloadJPG()"><i class="fas fa-image"></i> DOWNLOAD HASIL JPG</button>
+                <button class="btn btn-secondary" onclick="resetLKPD()"><i class="fas fa-redo"></i> Mulai Lagi</button>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="teacher-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeTeacherModal()">&times;</span>
+            <h2 style="color: var(--sage-primary); margin-bottom: 1rem;"><i class="fas fa-chalkboard-teacher"></i> Rekap Nilai & Aktivitas Murid</h2>
+            <div id="teacher-recap-content">
+                <p style="color: var(--gray-text);">Belum ada data pengerjaan murid yang terekam pada sesi browser ini.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="print-report">
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; padding: 40px; color: #1b263b; background: #ffffff; width: 210mm; min-height: 297mm; margin: 0 auto; box-sizing: border-box;">
+            <div style="text-align: center; border-bottom: 3px double #1f4e3b; padding-bottom: 15px; margin-bottom: 20px;">
+                <h2 style="color: #1f4e3b; font-family: 'Amiri', serif; font-size: 22px; margin-bottom: 5px;">LKPD DIGITAL INTERAKTIF AKIDAH AKHLAK</h2>
+                <h3 style="font-size: 16px; color: #1b263b;">“Ayo Mengenal Sifat Wajib Allah” - Madrasah Aliyah</h3>
+            </div>
+
+            <div style="background: #fbf9f1; padding: 12px 15px; border-radius: 8px; margin-bottom: 20px; font-size: 13px; border: 1px solid #e6f0eb;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <td><strong>Nama / Pembuat:</strong> <span id="p-nama">-</span></td>
+                        <td><strong>Kelas:</strong> <span id="p-kelas">-</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mode:</strong> <span id="p-mode">Individu</span></td>
+                        <td><strong>Tanggal:</strong> <span id="p-tanggal">-</span></td>
+                    </tr>
+                    <tr id="p-group-row" style="display:none;">
+                        <td colspan="2"><strong>Kelompok & Anggota:</strong> <span id="p-kelompok">-</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div style="margin-bottom: 15px; font-size: 13px;">
+                <h4 style="background: #1f4e3b; color: white; padding: 6px 10px; border-radius: 4px; font-size: 13px; margin-bottom: 8px;">📊 Hasil Ringkasan Misi</h4>
+                <p><strong>Skor Akhir:</strong> <span id="p-skor">0</span> / 100 &nbsp;|&nbsp; <strong>Persentase:</strong> <span id="p-persen">0%</span> &nbsp;|&nbsp; <strong>Predikat:</strong> <span id="p-predikat">-</span></p>
+            </div>
+
+            <div style="margin-bottom: 15px; font-size: 13px;">
+                <h4 style="background: #1f4e3b; color: white; padding: 6px 10px; border-radius: 4px; font-size: 13px; margin-bottom: 8px;">📚 Misi 1: Pemahaman Materi</h4>
+                <p><strong>1. Pengertian Sifat Wajib Allah:</strong><br><span id="p-misi1-1" style="color: #4a5568; display: block; margin-top: 4px;">-</span></p>
+                <p style="margin-top: 8px;"><strong>2. Mengapa Meningkatkan Keimanan:</strong><br><span id="p-misi1-2" style="color: #4a5568; display: block; margin-top: 4px;">-</span></p>
+            </div>
+
+            <div style="margin-bottom: 15px; font-size: 13px;">
+                <h4 style="background: #1f4e3b; color: white; padding: 6px 10px; border-radius: 4px; font-size: 13px; margin-bottom: 8px;">🧩 Misi 2 & 3: Game Cocokkan & Pengelompokan</h4>
+                <p>Skor Cocokkan Sifat: <span id="p-match-score">0</span> / 10 | Skor Pengelompokan: <span id="p-group-score">0</span> / 20</p>
+            </div>
+
+            <div style="margin-bottom: 15px; font-size: 13px;">
+                <h4 style="background: #1f4e3b; color: white; padding: 6px 10px; border-radius: 4px; font-size: 13px; margin-bottom: 8px;">💡 Misi 5: Refleksi & Tantangan Kebaikan</h4>
+                <p><strong>Refleksi 1 (Sifat yang dikagumi):</strong><br><span id="p-ref-1" style="color: #4a5568; display: block; margin-top: 4px;">-</span></p>
+                <p style="margin-top: 6px;"><strong>Refleksi 2 (Sikap Maha Melihat/Basar):</strong><br><span id="p-ref-2" style="color: #4a5568; display: block; margin-top: 4px;">-</span></p>
+                <p style="margin-top: 6px;"><strong>Refleksi 3 (Sikap Maha Mendengar/Sama'):</strong><br><span id="p-ref-3" style="color: #4a5568; display: block; margin-top: 4px;">-</span></p>
+                <p style="margin-top: 6px;"><strong>Refleksi 4 (Perubahan sikap):</strong><br><span id="p-ref-4" style="color: #4a5568; display: block; margin-top: 4px;">-</span></p>
+                <p style="margin-top: 8px;"><strong>Tantangan Kebaikan Terpilih:</strong> <span id="p-tantangan-list">-</span></p>
+                <p style="margin-top: 4px;"><strong>Target Kebiasaan:</strong> <span id="p-tantangan-custom">-</span></p>
+            </div>
+
+            <div style="margin-top: 40px; display: flex; justify-content: space-between; font-size: 13px;">
+                <div style="text-align: center; width: 200px;">
+                    <p>Mengetahui,</p>
+                    <p>Guru Mata Pelajaran</p>
+                    <br><br><br>
+                    <p style="border-bottom: 1px solid #1b263b; font-weight: bold;">( ......................................... )</p>
+                </div>
+                <div style="text-align: center; width: 200px;">
+                    <p>Sidenreng Rappang, <span id="p-date-sign">-</span></p>
+                    <p>Murid / Ketua Kelompok</p>
+                    <br><br><br>
+                    <p style="border-bottom: 1px solid #1b263b; font-weight: bold;" id="p-sign-name">( ......................................... )</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 LKPD Digital Interaktif • Akidah Akhlak Madrasah Aliyah</p>
+    </footer>
+
+    <script>
+        let currentSection = 1;
+        let workMode = 'individu';
+        let matchScoreVal = 0;
+        let groupScoreVal = 0;
+        let quizScoreVal = 0;
+        let selectedMatchSifat = null;
+        let selectedMatchSifatText = null;
+        let selectedPoolSifat = null;
+        let isMusicPlaying = false;
+
+        const totalPages = 8;
+
+        const sifatData = [
+            { name: "Wujud", meaning: "Ada", category: "Nafsiyah" },
+            { name: "Qidam", meaning: "Terdahulu/Awal", category: "Salbiyah" },
+            { name: "Baqa’", meaning: "Kekal", category: "Salbiyah" },
+            { name: "Mukhalafatu lil-hawaditsi", meaning: "Berbeda dengan makhluk", category: "Salbiyah" },
+            { name: "Qiyamuhu binafsihi", meaning: "Berdiri sendiri", category: "Salbiyah" },
+            { name: "Wahdaniyah", meaning: "Tunggal/Esa", category: "Salbiyah" },
+            { name: "Qudrat", meaning: "Berkuasa", category: "Maani" },
+            { name: "Iradat", meaning: "Berkehendak", category: "Maani" },
+            { name: "‘Ilmu", meaning: "Mengetahui", category: "Maani" },
+            { name: "Hayat", meaning: "Hidup", category: "Maani" },
+            { name: "Sama’", meaning: "Mendengar", category: "Maani" },
+            { name: "Basar", meaning: "Melihat", category: "Maani" },
+            { name: "Kalam", meaning: "Berfirman/Berkalam", category: "Maani" },
+            { name: "Qadiran", meaning: "Maha Berkuasa", category: "Manawiyah" },
+            { name: "Muridan", meaning: "Maha Berkehendak", category: "Manawiyah" },
+            { name: "‘Aliman", meaning: "Maha Mengetahui", category: "Manawiyah" },
+            { name: "Hayyan", meaning: "Maha Hidup", category: "Manawiyah" },
+            { name: "Sami’an", meaning: "Maha Mendengar", category: "Manawiyah" },
+            { name: "Basiran", meaning: "Maha Melihat", category: "Manawiyah" },
+            { name: "Mutakalliman", meaning: "Maha Berfirman/Berkalam", category: "Manawiyah" }
+        ];
+
+        const quizData = [
+            { q: "Allah pasti ada dan keberadaan-Nya tidak didahului oleh ketiadaan.", options: ["Wujud", "Baqa’", "Qudrat", "Hayat"], answer: "Wujud" },
+            { q: "Allah Swt. tidak sama dan tidak menyerupai makhluk ciptaan-Nya.", options: ["Qiyamuhu binafsihi", "Mukhalafatu lil-hawaditsi", "Wahdaniyah", "Qidam"], answer: "Mukhalafatu lil-hawaditsi" },
+            { q: "Allah Maha Mendengar segala suara yang ada di alam semesta tanpa batasan.", options: ["Basar", "Sama’", "Kalam", "‘Ilmu"], answer: "Sama’" },
+            { q: "Allah Swt. Maha Berkehendak atas segala sesuatu yang terjadi di alam raya.", options: ["Qudrat", "Muridan", "Iradat", "‘Aliman"], answer: "Iradat" },
+            { q: "Sifat wajib yang menunjukkan bahwa Allah Swt. Maha Hidup dan tidak pernah mati adalah...", options: ["Hayat", "Baqa’", "Qidam", "Wujud"], answer: "Hayat" }
+        ];
+
+        window.onload = function() {
+            initMatchGame();
+            initGroupingGame();
+            initQuiz();
+            updateProgress();
+        };
+
+        function toggleMusic() {
+            const music = document.getElementById('bg-music');
+            const btn = document.getElementById('music-toggle-btn');
+            if(isMusicPlaying) {
+                music.pause();
+                isMusicPlaying = false;
+                btn.innerHTML = '<i class="fas fa-volume-mute"></i> Musik';
+            } else {
+                music.play().then(() => {
+                    isMusicPlaying = true;
+                    btn.innerHTML = '<i class="fas fa-volume-up"></i> Matikan Musik';
+                }).catch(e => {
+                    console.log("Audio play error:", e);
+                    alert("Klik sekali lagi untuk mengizinkan pemutaran musik latar.");
+                });
+            }
+        }
+
+        function playSound(type) {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                osc.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                if(type === 'correct') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.15);
+                    gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(110, audioCtx.currentTime + 0.2);
+                    gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                }
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.3);
+            } catch(e) { console.log(e); }
+        }
+
+        function showFeedbackPopup(isCorrect, customMsg) {
+            const popup = document.getElementById('feedback-popup');
+            const icon = document.getElementById('fb-icon');
+            const text = document.getElementById('fb-text');
+
+            if(isCorrect) {
+                playSound('correct');
+                icon.innerHTML = '✅';
+                text.innerHTML = customMsg || 'MasyaAllah! Jawaban tepat.';
+                if (typeof confetti === 'function') confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+            } else {
+                playSound('wrong');
+                icon.innerHTML = '❌';
+                text.innerHTML = customMsg || 'Belum tepat, coba lagi!';
+            }
+            popup.style.display = 'flex';
+        }
+
+        function closeFeedbackPopup() {
+            document.getElementById('feedback-popup').style.display = 'none';
+        }
+
+        function goHome() {
+            if(confirm('Kembali ke halaman awal? Jawaban saat ini tetap aman tersimpan.')) changePage(1);
+        }
+
+        function setMode(mode) {
+            workMode = mode;
+            const indCard = document.getElementById('mode-individu-card');
+            const grpCard = document.getElementById('mode-kelompok-card');
+            const indFields = document.getElementById('individu-fields-container');
+            const grpFields = document.getElementById('group-fields-container');
+
+            if(mode === 'individu') {
+                indCard.classList.add('active');
+                grpCard.classList.remove('active');
+                indFields.style.display = 'block';
+                grpFields.style.display = 'none';
+            } else {
+                grpCard.classList.add('active');
+                indCard.classList.remove('active');
+                indFields.style.display = 'none';
+                grpFields.style.display = 'block';
+            }
+        }
+
+        function changePage(targetPage) {
+            document.getElementById(`page-${currentSection}`).style.display = 'none';
+            currentSection = targetPage;
+            document.getElementById(`page-${currentSection}`).style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const percent = Math.round(((currentSection - 1) / (totalPages - 1)) * 100);
+            document.getElementById('progress-title').innerText = `Halaman ${currentSection} dari ${totalPages}`;
+            document.getElementById('progress-percent').innerText = `${percent}% Selesai`;
+            document.getElementById('progress-fill').style.width = `${percent}%`;
+        }
+
+        function validateAndNext(page) {
+            if(page === 1) {
+                if(workMode === 'individu') {
+                    const nama = document.getElementById('input-nama').value.trim();
+                    const kelas = document.getElementById('input-kelas').value.trim();
+                    if(!nama || !kelas) {
+                        alert('Mohon isi Nama Lengkap dan Kelas terlebih dahulu!');
+                        return;
+                    }
+                } else {
+                    const namaKelompok = document.getElementById('input-namakelompok').value.trim();
+                    const anggota = document.getElementById('input-anggotakelompok').value.trim();
+                    if(!namaKelompok || !anggota) {
+                        alert('Mohon isi Nama Kelompok dan Daftar Anggota terlebih dahulu!');
+                        return;
+                    }
+                }
+            }
+            changePage(page + 1);
+        }
+
+        function initMatchGame() {
+            matchScoreVal = 0;
+            selectedMatchSifat = null;
+            selectedMatchSifatText = null;
+            selectedMatchArtiEl = null;
+            selectedMatchArtiText = null;
+
+            document.getElementById('match-score').innerText = matchScoreVal;
+            const sifatCol = document.getElementById('match-sifat-col');
+            const artiCol = document.getElementById('match-arti-col');
+            sifatCol.innerHTML = '';
+            artiCol.innerHTML = '';
+
+            let shuffled = [...sifatData].sort(() => 0.5 - Math.random()).slice(0, 10);
+            let shuffledMeanings = [...shuffled].sort(() => 0.5 - Math.random());
+
+            shuffled.forEach(item => {
+                let div = document.createElement('div');
+                div.className = 'match-item';
+                div.innerText = item.name;
+                div.dataset.name = item.name;
+                div.onclick = () => selectMatchSifat(div, item.name);
+                sifatCol.appendChild(div);
+            });
+
+            shuffledMeanings.forEach(item => {
+                let div = document.createElement('div');
+                div.className = 'match-item';
+                div.innerText = item.meaning;
+                div.dataset.meaning = item.meaning;
+                div.onclick = () => selectMatchArti(div, item.meaning);
+                artiCol.appendChild(div);
+            });
+        }
+
+        function selectMatchSifat(element, name) {
+            if(element.classList.contains('matched')) return;
+            document.querySelectorAll('#match-sifat-col .match-item').forEach(el => {
+                if(!el.classList.contains('matched')) el.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            selectedMatchSifat = element;
+            selectedMatchSifatText = name;
+            checkMatchPair();
+        }
+
+        let selectedMatchArtiEl = null;
+        let selectedMatchArtiText = null;
+
+        function selectMatchArti(element, meaning) {
+            if(element.classList.contains('matched')) return;
+            document.querySelectorAll('#match-arti-col .match-item').forEach(el => {
+                if(!el.classList.contains('matched')) el.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            selectedMatchArtiEl = element;
+            selectedMatchArtiText = meaning;
+            checkMatchPair();
+        }
+
+        function checkMatchPair() {
+            if(selectedMatchSifatText && selectedMatchArtiText) {
+                let found = sifatData.find(s => s.name === selectedMatchSifatText && s.meaning === selectedMatchArtiText);
+                if(found) {
+                    selectedMatchSifat.classList.remove('selected');
+                    selectedMatchSifat.classList.add('matched');
+                    selectedMatchSifat.innerHTML = `${selectedMatchSifatText} <i class="fas fa-check"></i>`;
+
+                    selectedMatchArtiEl.classList.remove('selected');
+                    selectedMatchArtiEl.classList.add('matched');
+                    selectedMatchArtiEl.innerHTML = `${selectedMatchArtiText} <i class="fas fa-check"></i>`;
+
+                    matchScoreVal++;
+                    document.getElementById('match-score').innerText = matchScoreVal;
+                    showFeedbackPopup(true, "MasyaAllah! Pasangan sifat tepat.");
+                } else {
+                    showFeedbackPopup(false, "Belum tepat, coba lagi!");
+                    selectedMatchSifat.classList.remove('selected');
+                    selectedMatchArtiEl.classList.remove('selected');
+                }
+                selectedMatchSifat = null;
+                selectedMatchSifatText = null;
+                selectedMatchArtiEl = null;
+                selectedMatchArtiText = null;
+            }
+        }
+
+        function initGroupingGame() {
+            groupScoreVal = 0;
+            selectedPoolSifat = null;
+            const pool = document.getElementById('pool-sifat');
+            pool.innerHTML = '';
+            ['Nafsiyah', 'Salbiyah', 'Maani', 'Manawiyah'].forEach(cat => {
+                document.getElementById(`zone-${cat}`).innerHTML = '';
+            });
+
+            let shuffledSifat = [...sifatData].sort(() => 0.5 - Math.random());
+            shuffledSifat.forEach(item => {
+                let badge = document.createElement('span');
+                badge.className = 'draggable-badge';
+                badge.innerText = item.name;
+                badge.dataset.name = item.name;
+                badge.onclick = () => selectPoolItem(badge, item.name);
+                pool.appendChild(badge);
+            });
+        }
+
+        function selectPoolItem(element, name) {
+            document.querySelectorAll('.draggable-badge').forEach(el => el.style.borderColor = 'var(--sage-medium)');
+            element.style.borderColor = 'var(--gold)';
+            selectedPoolSifat = { element, name };
+        }
+
+        function selectCategory(categoryName) {
+            if(!selectedPoolSifat) {
+                alert('Pilih terlebih dahulu kartu sifat di sebelah kiri sebelum memasukkan ke kategori!');
+                return;
+            }
+            let zone = document.getElementById(`zone-${categoryName}`);
+            let dropped = document.createElement('span');
+            dropped.className = 'dropped-badge';
+            dropped.innerText = selectedPoolSifat.name;
+            dropped.dataset.name = selectedPoolSifat.name;
+            dropped.dataset.category = categoryName;
+            zone.appendChild(dropped);
+
+            selectedPoolSifat.element.remove();
+            selectedPoolSifat = null;
+        }
+
+        function checkGrouping() {
+            let correctCount = 0;
+            sifatData.forEach(item => {
+                let z = document.getElementById(`zone-${item.category}`);
+                if(z) {
+                    z.querySelectorAll('.dropped-badge').forEach(b => {
+                        if(b.dataset.name === item.name) correctCount++;
+                    });
+                }
+            });
+
+            groupScoreVal = correctCount;
+            let feedback = document.getElementById('grouping-feedback');
+            if(correctCount === 20) {
+                feedback.style.color = 'var(--success-green)';
+                feedback.innerText = `MasyaAllah! Semua (${correctCount}/20) pengelompokan sifat tepat!`;
+                showFeedbackPopup(true, "Luar biasa! Pengelompokan sifat sempurna.");
+            } else {
+                feedback.style.color = 'var(--error-red)';
+                feedback.innerText = `Ada ${correctCount} yang benar dari total sifat yang ditempatkan.`;
+                showFeedbackPopup(false, "Ada beberapa pengelompokan yang belum tepat.");
+            }
+        }
+
+        function initQuiz() {
+            quizScoreVal = 0;
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            quizData.forEach((item, index) => {
+                let qBox = document.createElement('div');
+                qBox.className = 'quiz-question-box';
+                qBox.innerHTML = `
+                    <p style="font-weight: 700; margin-bottom: 8px;">Soal ${index + 1}: ${item.q}</p>
+                    <div class="quiz-options" id="quiz-opts-${index}"></div>
+                    <p id="quiz-fb-${index}" style="margin-top: 8px; font-weight: 700; font-size: 0.9rem;"></p>
+                `;
+                container.appendChild(qBox);
+
+                let optsContainer = document.getElementById(`quiz-opts-${index}`);
+                item.options.forEach(opt => {
+                    let optBtn = document.createElement('div');
+                    optBtn.className = 'quiz-option';
+                    optBtn.innerText = opt;
+                    optBtn.onclick = () => answerQuiz(index, opt, item.answer, optBtn);
+                    optsContainer.appendChild(optBtn);
+                });
+            });
+        }
+
+        function answerQuiz(qIndex, selectedOpt, correctOpt, btnElement) {
+            let parent = document.getElementById(`quiz-opts-${qIndex}`);
+            if (parent.dataset.answered === 'true') return;
+
+            parent.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
+            btnElement.classList.add('selected');
+
+            let fb = document.getElementById(`quiz-fb-${qIndex}`);
+            if(selectedOpt === correctOpt) {
+                parent.dataset.answered = 'true';
+                fb.style.color = 'var(--success-green)';
+                fb.innerText = '✅ MasyaAllah! Jawabanmu tepat.';
+                quizScoreVal++;
+                showFeedbackPopup(true, "MasyaAllah! Jawaban tepat.");
+            } else {
+                fb.style.color = 'var(--error-red)';
+                fb.innerText = '❌ Belum tepat. Yuk, pahami kembali maknanya.';
+                showFeedbackPopup(false, "Jawaban belum tepat, yuk cermati kembali.");
+            }
+        }
+
+        function finishLKPD() {
+            const misi1_1 = document.getElementById('misi1-soal1').value.trim();
+            const misi1_2 = document.getElementById('misi1-soal2').value.trim();
+            const ref1 = document.getElementById('refleksi-1').value.trim();
+            const ref2 = document.getElementById('refleksi-2').value.trim();
+            const ref3 = document.getElementById('refleksi-3').value.trim();
+            const ref4 = document.getElementById('refleksi-4').value.trim();
+            const checkedCount = document.querySelectorAll('#checklist-container input[type="checkbox"]:checked').length;
+
+            if(!misi1_1 || !misi1_2) {
+                alert('Mohon lengkapi kedua jawaban pada Misi 1 terlebih dahulu!');
+                changePage(2);
+                return;
+            }
+
+            if(!ref1 || !ref2 || !ref3 || !ref4) {
+                alert('Mohon lengkapi seluruh jawaban refleksi pada Misi 5 terlebih dahulu!');
+                changePage(6);
+                return;
+            }
+
+            if(checkedCount < 3) {
+                alert('Pilih minimal 3 tantangan kebaikan terlebih dahulu!');
+                return;
+            }
+
+            let sMisi1 = (misi1_1 && misi1_2) ? 20 : 0;
+            let sMisi2 = (matchScoreVal / 10) * 20;
+            let sMisi3 = (groupScoreVal / 20) * 25;
+            let sMisi4 = (quizScoreVal / quizData.length) * 20;
+            let sMisi5 = (ref1 && ref2 && ref3 && ref4) ? 15 : 0;
+
+            let totalScore = Math.round(sMisi1 + sMisi2 + sMisi3 + sMisi4 + sMisi5);
+            if(totalScore > 100) totalScore = 100;
+
+            let predikat = "";
+            let predikatBadge = document.getElementById('res-predikat');
+            predikatBadge.style.color = "var(--navy)";
+            if(totalScore >= 90) {
+                predikat = "🌟 Sangat Baik";
+                predikatBadge.style.background = "var(--gold)";
+            } else if(totalScore >= 80) {
+                predikat = "⭐ Baik";
+                predikatBadge.style.background = "var(--sage-medium)";
+                predikatBadge.style.color = "white";
+            } else if(totalScore >= 70) {
+                predikat = "👍 Cukup Baik";
+                predikatBadge.style.background = "#d69e2e";
+            } else {
+                predikat = "💪 Terus Belajar";
+                predikatBadge.style.background = "#e53e3e";
+                predikatBadge.style.color = "white";
+            }
+
+            let namaDisplay = workMode === 'individu'
+                ? document.getElementById('input-nama').value
+                : `[Kelompok] ${document.getElementById('input-namakelompok').value}`;
+            let kelasDisplay = workMode === 'individu'
+                ? document.getElementById('input-kelas').value
+                : document.getElementById('input-anggotakelompok').value;
+
+            document.getElementById('res-nama').innerText = namaDisplay;
+            document.getElementById('res-kelas').innerText = kelasDisplay;
+            document.getElementById('res-skor').innerText = totalScore;
+            document.getElementById('res-persen').innerText = `${totalScore}%`;
+            predikatBadge.innerText = predikat;
+
+            saveToTeacherLog(namaDisplay, kelasDisplay, totalScore, predikat);
+            if (typeof confetti === 'function') confetti({ particleCount: 150, spread: 100, origin: { y: 0.5 } });
+            changePage(8);
+        }
+
+        function saveToTeacherLog(nama, kelas, score, predikat) {
+            let logs = JSON.parse(localStorage.getItem('lkpd_akidah_logs') || '[]');
+            logs.push({
+                nama: nama,
+                kelas: kelas,
+                mode: workMode,
+                score: score,
+                predikat: predikat,
+                date: new Date().toLocaleDateString('id-ID')
+            });
+            localStorage.setItem('lkpd_akidah_logs', JSON.stringify(logs));
+        }
+
+        function openTeacherModal() {
+            document.getElementById('teacher-modal').style.display = 'flex';
+            let content = document.getElementById('teacher-recap-content');
+            let logs = JSON.parse(localStorage.getItem('lkpd_akidah_logs') || '[]');
+
+            if(logs.length === 0) {
+                content.innerHTML = `<p style="color: var(--gray-text);">Belum ada rekap pengerjaan murid yang tersimpan.</p>`;
+                return;
+            }
+
+            let html = `
+                <table style="width:100%; border-collapse: collapse; font-size: 0.9rem;">
+                    <thead>
+                        <tr style="background: var(--sage-light); color: var(--sage-primary);">
+                            <th style="padding: 10px; border: 1px solid var(--cream-dark); text-align: left;">Nama / Kelompok</th>
+                            <th style="padding: 10px; border: 1px solid var(--cream-dark);">Mode</th>
+                            <th style="padding: 10px; border: 1px solid var(--cream-dark);">Skor</th>
+                            <th style="padding: 10px; border: 1px solid var(--cream-dark);">Predikat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            logs.forEach(l => {
+                html += `
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid var(--cream-dark);">${escapeHtml(l.nama)}</td>
+                        <td style="padding: 10px; border: 1px solid var(--cream-dark); text-align: center;">${escapeHtml(l.mode)}</td>
+                        <td style="padding: 10px; border: 1px solid var(--cream-dark); text-align: center; font-weight: bold;">${l.score}</td>
+                        <td style="padding: 10px; border: 1px solid var(--cream-dark); text-align: center;">${escapeHtml(l.predikat)}</td>
+                    </tr>
+                `;
+            });
+            html += `</tbody></table>`;
+            content.innerHTML = html;
+        }
+
+        function escapeHtml(value) {
+            return String(value).replace(/[&<>"']/g, function(char) {
+                return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char]);
+            });
+        }
+
+        function closeTeacherModal() {
+            document.getElementById('teacher-modal').style.display = 'none';
+        }
+
+        function preparePrintData() {
+            let namaDisplay = workMode === 'individu' ? document.getElementById('input-nama').value : document.getElementById('input-namakelompok').value;
+            let kelasDisplay = workMode === 'individu' ? document.getElementById('input-kelas').value : document.getElementById('input-anggotakelompok').value;
+
+            document.getElementById('p-nama').innerText = namaDisplay || '-';
+            document.getElementById('p-kelas').innerText = kelasDisplay || '-';
+            document.getElementById('p-mode').innerText = workMode.toUpperCase();
+            document.getElementById('p-tanggal').innerText = new Date().toLocaleDateString('id-ID');
+            document.getElementById('p-date-sign').innerText = new Date().toLocaleDateString('id-ID');
+            document.getElementById('p-sign-name').innerText = `(${namaDisplay || '.........................'})`;
+
+            if(workMode === 'kelompok') {
+                document.getElementById('p-group-row').style.display = 'table-row';
+                document.getElementById('p-kelompok').innerText = `${document.getElementById('input-namakelompok').value} (Anggota: ${document.getElementById('input-anggotakelompok').value})`;
+            } else {
+                document.getElementById('p-group-row').style.display = 'none';
+            }
+
+            document.getElementById('p-skor').innerText = document.getElementById('res-skor').innerText;
+            document.getElementById('p-persen').innerText = document.getElementById('res-persen').innerText;
+            document.getElementById('p-predikat').innerText = document.getElementById('res-predikat').innerText;
+
+            document.getElementById('p-misi1-1').innerText = document.getElementById('misi1-soal1').value || '-';
+            document.getElementById('p-misi1-2').innerText = document.getElementById('misi1-soal2').value || '-';
+
+            document.getElementById('p-match-score').innerText = matchScoreVal;
+            document.getElementById('p-group-score').innerText = groupScoreVal;
+
+            document.getElementById('p-ref-1').innerText = document.getElementById('refleksi-1').value || '-';
+            document.getElementById('p-ref-2').innerText = document.getElementById('refleksi-2').value || '-';
+            document.getElementById('p-ref-3').innerText = document.getElementById('refleksi-3').value || '-';
+            document.getElementById('p-ref-4').innerText = document.getElementById('refleksi-4').value || '-';
+
+            let checkedItems = [];
+            document.querySelectorAll('#checklist-container input[type="checkbox"]:checked').forEach(cb => checkedItems.push(cb.value));
+            document.getElementById('p-tantangan-list').innerText = checkedItems.length > 0 ? checkedItems.join(', ') : '-';
+            document.getElementById('p-tantangan-custom').innerText = document.getElementById('tantangan-custom').value || '-';
+        }
+
+        function downloadPDF() {
+            if (typeof html2pdf === 'undefined') {
+                alert('Fitur PDF belum termuat. Pastikan perangkat terhubung ke internet lalu coba lagi.');
+                return;
+            }
+            preparePrintData();
+            const element = document.getElementById('print-report');
+            element.style.display = 'block';
+
+            const opt = {
+                margin: 0,
+                filename: `LKPD_Akidah_Akhlak.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().from(element).set(opt).save().then(() => {
+                element.style.display = 'none';
+            }).catch(() => {
+                element.style.display = 'none';
+                alert('Gagal membuat PDF. Silakan coba lagi.');
+            });
+        }
+
+        function downloadJPG() {
+            if (typeof html2canvas === 'undefined') {
+                alert('Fitur JPG belum termuat. Pastikan perangkat terhubung ke internet lalu coba lagi.');
+                return;
+            }
+            preparePrintData();
+            const element = document.getElementById('print-report');
+            element.style.display = 'block';
+
+            html2canvas(element, { scale: 2, useCORS: true }).then(canvas => {
+                element.style.display = 'none';
+                let link = document.createElement('a');
+                link.download = `LKPD_Akidah_Akhlak.jpg`;
+                link.href = canvas.toDataURL('image/jpeg', 0.95);
+                link.click();
+            }).catch(() => {
+                element.style.display = 'none';
+                alert('Gagal membuat JPG. Silakan coba lagi.');
+            });
+        }
+
+        function resetLKPD() {
+            if(confirm('Apakah Anda yakin ingin mengulang LKPD dari awal?')) location.reload();
+        }
+    </script>
+</body>
+</html>
